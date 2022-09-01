@@ -31,7 +31,7 @@ function Header() {
         {/* {right} */}
         <div className="flex space-x-4 items-center justify-end">
           <p className="hidden md:inline cursor-pointer">Become a partner</p>
-          <GlobeAltIcon className="h-6 text-gray-600 cursor-pointer" />
+          <GlobeAltIcon className="hidden md:inline h-6 text-gray-600 cursor-pointer" />
           <div className="flex space-x-2 items-center border-2 p-2 rounded-full">
             <Bars3Icon className="h-6 text-gray-600 cursor-pointer"/>
             <UserCircleIcon className="h-6 text-gray-600 cursor-pointer"/>
