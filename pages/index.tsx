@@ -19,7 +19,7 @@ const Home: NextPage = ({ exploreData, }) => {
           
           {/* Pull some data with some endpoints - APIs */}
           {exploreData.map((item : any) => (
-            <h1>{item.location}</h1>
+            <h1 key={item.location}>{item.location}</h1>
           ))}
         </section>
       </main>
