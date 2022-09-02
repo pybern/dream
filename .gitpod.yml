@@ -14,3 +14,7 @@ vscode:
   extensions:
     - dsznajder.es7-react-js-snippets
     - bradlc.vscode-tailwindcss
+    - steoates.autoimport
+    - dbaeumer.vscode-eslint
+    - christian-kohler.npm-intellisense
+    - ms-azuretools.vscode-docker

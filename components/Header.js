@@ -26,11 +26,11 @@ function Header() {
           < MagnifyingGlassIcon className="hidden md:inline-flex h-8 bg-blue-800 text-white rounded-full p-2 cursor-pointer md:mx-2" />
         </div>
 
-        {/* {optios} */}
+        {/* {options} */}
 
         {/* {right} */}
         <div className="flex space-x-4 items-center justify-end">
-          <p className="hidden md:inline cursor-pointer">Become a partner</p>
+          <p className="hidden md:inline font-medium cursor-pointer">Become a partner</p>
           <GlobeAltIcon className="hidden md:inline h-6 text-gray-600 cursor-pointer" />
           <div className="flex space-x-2 items-center border-2 p-2 rounded-full">
             <Bars3Icon className="h-6 text-gray-600 cursor-pointer"/>

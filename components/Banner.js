@@ -2,8 +2,7 @@ import Image from "next/image";
 
 function Banner() {
   return (
-    <div className="relative h-[300px] sm:h-[400px] lg:h-[500] xl:h-[600px] 2xl:h-[700px]">
-        <p>Banner</p>
+    <div className="relative h-[200px] sm:h-[300px] lg:h-[400] xl:h-[500px] 2xl:h-[600px]">
         <Image 
         src ="https://bit.ly/3BcH1vb"
         layout="fill"
