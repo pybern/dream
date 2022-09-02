@@ -10,20 +10,20 @@ function Footer() {
             </div>
 
             <div className="space-y-4 text-xs text-gray-800 align-top">
-                <h5 className="font-bold">Community</h5>
+                <h5 className="font-bold">COMMUNITY</h5>
                 <p>Sustainability</p>
                 <p>Green</p>
             </div>
 
             <div className="space-y-4 text-xs text-gray-800">
-                <h5 className="font-bold">Partners</h5>
+                <h5 className="font-bold">PARTNERS</h5>
                 <p>Dealers</p>
                 <p>Frequent mover</p>
                 <p>Portal</p>
             </div>
 
             <div className="space-y-4 text-xs text-gray-800">
-                <h5 className="font-bold">Support</h5>
+                <h5 className="font-bold">SUPPORT</h5>
                 <p>Knowledgebase</p>
                 <p>FAQ</p>
                 <p>Customer Support</p>
