@@ -3,16 +3,18 @@ import { supabase } from '../utils/supabaseClient'
 import Auth from '../components/Auth'
 import Account from '../components/Account'
 
+
+
 export default function Home() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [session, setSession] = useState(null)
+  const [isLoading, setIsLoading] = useState<any>(true)
+  const [session, setSession] = useState<any>(null)
 
   useEffect(() => {
     let mounted = true
 
     async function getInitialSession() {
       const {
-        data: { session },
+        data : { session },
       } = await supabase.auth.getSession()
 
       // only update the react state if the component is still mounted
@@ -42,7 +44,7 @@ export default function Home() {
 
   return (
     <div className="container" style={{ padding: '50px 0 100px 0' }}>
-      {!session ? (
+      {!session ?  (
         <Auth />
       ) : (
         <Account key={session.user.id} session={session} />
