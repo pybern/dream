@@ -21,7 +21,7 @@ function Header() {
         </div>
         
         {/* {middle} - Search*/}
-        <div className="flex items-center md:border-2 rounded-full py-2 md:shadow-sm">
+        <div className="flex items-center rounded-full py-2 md:shadow">
           <input className="flex-grow pl-5 bg-transparent outline-none text-gray-600 placeholder-slate400" type="text" placeholder="Search anything" />
           < MagnifyingGlassIcon className="hidden md:inline-flex h-8 bg-blue-800 text-white rounded-full p-2 cursor-pointer md:mx-2" />
         </div>

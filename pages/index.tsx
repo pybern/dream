@@ -7,6 +7,7 @@ import MediumCard from '../components/MediumCard'
 import LargeCard from '../components/LargeCard'
 import Footer from '../components/Footer'
 
+
 type LocationType = {
   img:string,
   location:string,
