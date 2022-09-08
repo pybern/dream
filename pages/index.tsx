@@ -8,8 +8,33 @@ import MediumCard from '../components/MediumCard'
 import LargeCard from '../components/LargeCard'
 import Footer from '../components/Footer'
 
+export interface locationI {
+  locationData: Data;
+}
 
-const Home: NextPage = ({ locationData }) => {
+export interface Data {
+  allLocations: AllLocation[];
+  allExplores:  AllExplore[];
+}
+
+export interface AllExplore {
+  id:    string;
+  title: string;
+  img:   Img;
+}
+
+export interface Img {
+  url: string;
+}
+
+export interface AllLocation {
+  id:       string;
+  location: string;
+  distance: string;
+  img:      Img;
+}
+
+const Home: NextPage<locationI> = ({ locationData }) => {
   return (
     <div>
       <Head>
