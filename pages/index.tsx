@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import {gql, GraphQLClient} from 'graphql-request'
 import Head from 'next/head'
 import Header from '../components/Header'
 import Banner from '../components/Banner'
@@ -8,21 +9,7 @@ import LargeCard from '../components/LargeCard'
 import Footer from '../components/Footer'
 
 
-type LocationType = {
-  img:string,
-  location:string,
-  distance:string,
-}
-type CardsType = {
-  img:string,
-  title:string,
-}
-type PageProps = {
-  locationData : LocationType[],
-  cardsData : CardsType[]
-}
-
-const Home: NextPage<PageProps> = ({ locationData, cardsData }) => {
+const Home: NextPage = ({ locationData }) => {
   return (
     <div>
       <Head>
@@ -40,8 +27,8 @@ const Home: NextPage<PageProps> = ({ locationData, cardsData }) => {
           
           {/* Pull some data with some endpoints - APIs */}
           <div className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {locationData.map(({ img, distance, location }) => (
-              <SmallCard key={img} img={img} distance={distance} location={location} />
+            {locationData.allLocations.map(({ id, img, distance, location }) => (
+              <SmallCard key={id} img={img.url} distance={distance} location={location} />
             ))}
           </div>
         </section>
@@ -51,8 +38,8 @@ const Home: NextPage<PageProps> = ({ locationData, cardsData }) => {
           <h2 className="text-4xl font-semibold py-8">Instant Booking</h2>
 
           <div className = "flex space-x-3 overflow-scroll scrollbar-hide p-3 ml-3">
-            {cardsData.map(({ img, title }) => (
-              <MediumCard key={img} img={img} title={title} />
+            {locationData.allExplores.map(({ id, img, title }) => (
+              <MediumCard key={id} img={img.url} title={title} />
 
             ))}
           </div>
@@ -69,19 +56,46 @@ const Home: NextPage<PageProps> = ({ locationData, cardsData }) => {
 }
 
 export default Home
-export async function getStaticProps() {
-  const locationData = await fetch("https://jsonkeeper.com/b/BPPJ").then(
-    (res) => res.json()
-  );
 
-  const cardsData = await fetch("https://jsonkeeper.com/b/VHHT").then(
-    (res) => res.json()
-  );
+const query = gql`
+query{
+  allLocations {
+    id
+    location
+    distance
+    img {
+      url
+    }
+  }
+  allExplores {
+    id
+    title
+    img {
+      url
+    }
+  }
+}
+`
+
+export async function getStaticProps() {
+
+  const endpoint="https://graphql.datocms.com/"
+  const graphQLClient = new GraphQLClient(endpoint, {headers:{"content-type":"application/json",authorization:"Bearer " + process.env.DATOCMS_API_TOKEN}})
+
+  const locationData = await graphQLClient.request(query)
+  console.log(locationData)
+
+  // const locationData = await fetch("https://jsonkeeper.com/b/BPPJ").then(
+  //   (res) => res.json()
+  // );
+
+  // const cardsData = await fetch("https://jsonkeeper.com/b/VHHT").then(
+  //   (res) => res.json()
+  // );
 
   return{
     props:{
       locationData,
-      cardsData,
     }
   }
 }

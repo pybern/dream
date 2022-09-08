@@ -29,7 +29,7 @@ export default function Home() {
 
     getInitialSession()
 
-    const { subscription } = supabase.auth.onAuthStateChange(
+    const { data : { subscription } } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setSession(session)
       }

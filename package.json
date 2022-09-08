@@ -9,6 +9,7 @@
     "@heroicons/react": "^2.0.10",
     "@supabase/supabase-js": "^2.0.0-rc.8",
     "@types/jest": "^29.0.0",
+    "graphql-request": "^5.0.0",
     "install": "^0.13.0",
     "next": "latest",
     "npm": "^8.19.1",
