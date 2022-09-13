@@ -51,6 +51,7 @@ const Home: NextPage<locationI> = ({ locationData }) => {
           <h2 className="text-4xl font-semibold pb-5">Nearby Quotes</h2>
           
           {/* Pull some data with some endpoints - APIs */}
+          {/* slice to take 6 */}
           <div className = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {locationData.allLocations.map(({ id, img, distance, location }) => (
               <SmallCard key={id} img={img.url} distance={distance} location={location} />
@@ -108,15 +109,6 @@ export async function getStaticProps() {
   const graphQLClient = new GraphQLClient(endpoint, {headers:{"content-type":"application/json",authorization:"Bearer " + process.env.DATOCMS_API_TOKEN}})
 
   const locationData = await graphQLClient.request(query)
-  console.log(locationData)
-
-  // const locationData = await fetch("https://jsonkeeper.com/b/BPPJ").then(
-  //   (res) => res.json()
-  // );
-
-  // const cardsData = await fetch("https://jsonkeeper.com/b/VHHT").then(
-  //   (res) => res.json()
-  // );
 
   return{
     props:{
