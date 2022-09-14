@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useRouter } from 'next/router';
 import { 
   MagnifyingGlassIcon, 
   Bars3Icon,
@@ -7,12 +8,11 @@ import {
   TruckIcon,
 } from '@heroicons/react/24/solid'
 import { useState } from "react";
-
-
-
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { DateRangePicker } from 'react-date-range';
+
+
 
 function Header() {
 
@@ -36,12 +36,24 @@ function Header() {
     key: "selection"
   }
 
+  const router = useRouter()
 
+  const search = () => {
+    router.push({
+      pathname:"/search",
+      query:{
+        location: searchInput,
+        startDate: startDate.toISOString(),
+        endDate: endDate.toISOString(),
+        noOfGuest,
+      }  
+    })
+  }
 
   return (
     <header className="sticky top-0 z-50 grid grid-cols-3 bg-white shadow-md p-5 md:px-10 justify-end">
         {/* {left} */}
-        <div className="relative flex items-center h-10 cursor-pointer my-auto">
+        <div onClick={() => router.push("/")} className="relative flex items-center h-10 cursor-pointer my-auto">
             <Image 
                 src="/logo_placeholder.svg" 
                 layout="fill" 
@@ -84,7 +96,7 @@ function Header() {
           </div>
           <div className="flex">
             <button className="flex-grow text-gray-500" onClick = {resetInput}>Cancel</button>
-            <button className="flex-grow text-red-500">Search</button>
+            <button className="flex-grow text-red-500" onClick = {search}>Search</button>
           </div>
         </div>}
         
