@@ -1,18 +1,13 @@
-import { supabase } from '../utils/supabaseClient'
 
-export async function getStaticProps() {
-    const { data, error } = await supabase.from('faker').select('*').single()
 
-    return {
-      props:{
-        data,
-      }
-    }
-}
 
-function Faker({ data }) {
+function Faker({ faker }) {
   return (
-    <div><h1>{data.city}</h1></div>
+    <div>
+      <h1>Faker</h1>
+      <pre>{JSON.stringify(faker, null, 2)}</pre>
+      
+    </div>
   )
 }
 
