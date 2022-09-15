@@ -8,6 +8,7 @@ import MediumCard from '../components/MediumCard'
 import LargeCard from '../components/LargeCard'
 import Footer from '../components/Footer'
 
+
 export interface locationI {
   locationData: Data;
 }
@@ -103,11 +104,11 @@ query{
 }
 `
 
+
 export async function getStaticProps() {
 
   const endpoint="https://graphql.datocms.com/"
   const graphQLClient = new GraphQLClient(endpoint, {headers:{"content-type":"application/json",authorization:"Bearer " + process.env.DATOCMS_API_TOKEN}})
-
   const locationData = await graphQLClient.request(query)
 
   return{
