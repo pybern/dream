@@ -7,7 +7,7 @@ import format from "date-fns/format"
 import { supabase } from '../utils/supabaseClient'
 
 export async function getStaticProps() {
-    const { data : faker, error } : any = await supabase.from('faker').select('*')
+    const { data : faker, error } : any = await supabase.from('faker').select('*').limit(100)
 
     if (error) {
       throw new Error(error);
@@ -23,22 +23,20 @@ export async function getStaticProps() {
 function Search( { faker } ) {
     const router = useRouter();
 
+    const [startDate, setStartDate]: any = useState()
     const [endDate, setEndDate]: any = useState()
+
 
     useEffect(() => {
         if(!router.isReady) return;
+        setStartDate(format(new Date(router.query.startDate as string), "dd MMMM yy" ))
         setEndDate(format(new Date(router.query.endDate as string), "dd MMMM yy" ))
     }, [router.isReady])
 
 
     const location = router.query.location
-    //const startDate = router.query.startDate as string
-    //const endDate = router.query.endDate as string
     const noOfGuest = router.query.noOfGuest
-    //const formattedStartDate = format(new Date(startDate), "dd MMMM yy")
-    //const formattedEndDate = format(new Date(endDate), "dd MMMM yy")
-
-    //const dateRange = `${formattedStartDate} to ${formattedEndDate}`
+    const dateRange = `${startDate} to ${endDate}`
 
     
 
@@ -48,7 +46,7 @@ function Search( { faker } ) {
         <Header />
         <main className="flex">
             <section className="flex-grow pt-14 px-6">
-                <p className="text-xs">Booking results for {noOfGuest} vehicles from {endDate}</p>
+                <p className="text-xs">Booking results for {noOfGuest} vehicles from {dateRange}</p>
                 <h1 className="text-3xl font-semibold mt-2 mb-6">For {location}</h1>
                 <div className="hidden md:inline-flex mb-5 space-x-3 text-gray-800 whitespace-nowrap">
                     <p className="button">Cancellation Flexibility</p>
